@@ -55,7 +55,11 @@ app.get('/file/multiple', (req, res) => {
 });
 
 app.post('/upload/multiple', upload.array('file', 2), (req, res) => {
-    res.send('Files uploaded successfully');
+    let output = 'Files uploaded successfully';
+    for (file of req.files) {
+        output += '<br>' + file.originalname;
+    }
+    res.send(output);
 });
 
 app.listen(3000, () => {
