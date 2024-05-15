@@ -41,18 +41,8 @@ app.post('/upload', upload.single('file'), (req, res) => {
 });
 
 app.get('/file', (req, res) => {
-    res.send(`
-    <html>
-        <head></head>
-        <body>
-            <form method="post" action="/upload/ui" enctype="multipart/form-data">
-                <h1>Upload a file</h1>
-                <input type="file" name="file" accept="image/*" />
-                <input type="submit" value="Upload" />
-            </form>
-        </body>
-    </html>
-    `);
+    app.use(express.static('public'));
+    res.sendFile(__dirname + '/public/file.html');
 });
 
 app.post('/upload/ui', upload.single('file'), (req, res) => {
