@@ -49,6 +49,15 @@ app.post('/upload/ui', upload.single('file'), (req, res) => {
     res.send('File uploaded successfully');
 });
 
+app.get('/file/multiple', (req, res) => {
+    app.use(express.static('public'));
+    res.sendFile(__dirname + '/public/file_multiple.html');
+});
+
+app.post('/upload/multiple', upload.array('file', 2), (req, res) => {
+    res.send('Files uploaded successfully');
+});
+
 app.listen(3000, () => {
     console.log(`Server started at 3000`)
 });
